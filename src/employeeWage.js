@@ -1,5 +1,5 @@
 
-const IS_PRESENT = 1;
+const IS_PRESENT = 1, IS_PART_TIME = 2;
 const EMP_RATE_PER_HR = 20;
 
 class EmployeeWage {
@@ -12,12 +12,17 @@ class EmployeeWage {
     /*empcheck will store random value from 1 or 2.
     On getting 1 it will display employee is present if the value is 2 then the employee is absent. */
     attendanceCheck(){
-        this.empCheck = Math.floor(Math.random() * 10 ) % 2;
+        this.empCheck = Math.floor(Math.random() * 10 ) % 3;
         if(this.empCheck == IS_PRESENT){
             console.log("\nEmployee is Present!")
             this.attendance = "Present";
             return this.attendance;
         } 
+        else if(this.empCheck == IS_PART_TIME){
+                console.log("\nEmployee is Part-time Present!")
+                this.attendance = "Part-Time";
+                return this.attendance;
+        }
         else{
             console.log("\nEmployee is Absent!")
             this.attendance = "Absent";
@@ -29,6 +34,9 @@ class EmployeeWage {
         this.attendanceCheck();
         if(this.attendance == "Present"){
             this.empHrs = 8;
+        }
+        else if(this.attendance == "Part-Time"){
+            this.empHrs = 4;
         }
         else{
             this.empHrs = 0;
