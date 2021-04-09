@@ -13,7 +13,7 @@ class EmployeeWage {
 
     print() {return "****** Welcome to EmployeeWage! ******";}
 
-    dailyWage(){
+    totalWage(){
         while (totalEmpHrs < MAX_HRS_IN_MONTH && totalWorkingDays < NUM_OF_WORKING_DAYS){
             totalWorkingDays++;
             let empCheck = Math.floor(Math.random() * 10 ) % 3 + 1;
@@ -43,7 +43,7 @@ class EmployeeWage {
 
 let display = function(){
     console.log("****** Welcome to EmployeeWage! ******");
-    let employeeWage = new EmployeeWage().dailyWage();
+    let employeeWage = new EmployeeWage().totalWage();
     console.log(employeeWage);
 }
 display();
