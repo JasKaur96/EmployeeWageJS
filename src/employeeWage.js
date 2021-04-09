@@ -4,16 +4,18 @@ const EMP_RATE_PER_HR = 20;
 const NUM_OF_WORKING_DAYS = 20;
 const PART_TIME_HOURS = 4;
 const FULL_TIME_HOURS = 8;
-
+const MAX_HRS_IN_MONTH = 10;
 let totalEmpHrs = 0;
-let empHrs = 0;
+let totalEmpWage = 0;
+let empHrs = 0,totalWorkingDays = 0;
 class EmployeeWage {
     constructor() {}
 
     print() {return "****** Welcome to EmployeeWage! ******";}
 
     dailyWage(){
-        for(let day=0;day<NUM_OF_WORKING_DAYS;day++){
+        while (totalEmpHrs < MAX_HRS_IN_MONTH && totalWorkingDays < NUM_OF_WORKING_DAYS){
+            totalWorkingDays++;
             let empCheck = Math.floor(Math.random() * 10 ) % 3 + 1;
             switch(empCheck){
                 case 1:
@@ -30,15 +32,17 @@ class EmployeeWage {
                     break;
             }
             let salary = this.empHrs * EMP_RATE_PER_HR;
-            totalEmpHrs = totalEmpHrs + salary;
-            console.log("Employee Daily Wage :"+salary);    
+            totalEmpHrs = totalEmpHrs + this.empHrs;
+            totalEmpWage = totalEmpWage + salary;
+            console.log("Employee Daily Wage :"+salary);
+            console.log("\nDAY:"+  totalWorkingDays + " EmpHr:" + totalEmpHrs);
         } 
-        console.log("Total Employee Wage :",totalEmpHrs) 
+        console.log("Total Employee Wage :"+totalEmpWage);
     }
 }
 
 let display = function(){
-    console.log( "****** Welcome to EmployeeWage! ******");
+    console.log("****** Welcome to EmployeeWage! ******");
     let employeeWage = new EmployeeWage().dailyWage();
     console.log(employeeWage);
 }
