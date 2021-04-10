@@ -1,49 +1,32 @@
-
-const IS_PRESENT = 1, IS_PART_TIME = 2;
-const EMP_RATE_PER_HR = 20;
-const NUM_OF_WORKING_DAYS = 20;
-const PART_TIME_HOURS = 4;
-const FULL_TIME_HOURS = 8;
-const MAX_HRS_IN_MONTH = 10;
-let totalEmpHrs = 0;
-let totalEmpWage = 0;
-let empHrs = 0,totalWorkingDays = 0;
+const constants = require('./constants')
+let empCheck = 0;
+let attendance;
 class EmployeeWage {
     constructor() {}
 
     print() {return "****** Welcome to EmployeeWage! ******";}
-
-    totalWage(){
-        while (totalEmpHrs < MAX_HRS_IN_MONTH && totalWorkingDays < NUM_OF_WORKING_DAYS){
-            totalWorkingDays++;
-            let empCheck = Math.floor(Math.random() * 10 ) % 3 + 1;
-            switch(empCheck){
-                case 1:
-                    console.log("\nEmployee is Present!")
-                    this.empHrs = 8;
-                    break;
-                case 2:
-                    console.log("\nEmployee is Part-time Present!")
-                    this.empHrs = 4;
-                    break;
-                case 3:
-                    console.log("\nEmployee is Absent!")
-                    this.empHrs = 0;
-                    break;
-            }
-            let salary = this.empHrs * EMP_RATE_PER_HR;
-            totalEmpHrs = totalEmpHrs + this.empHrs;
-            totalEmpWage = totalEmpWage + salary;
-            console.log("Employee Daily Wage :"+salary);
-            console.log("\nDAY:"+  totalWorkingDays + " EmpHr:" + totalEmpHrs);
+    /*empcheck will store random value from 1 or 2.
+    On getting 1 it will display employee is present if the value is 2 then the employee is absent. */
+    attendanceCheck(){
+        empCheck = Math.floor(Math.random() * 10 ) % 2;
+        if(empCheck == constants.IS_PRESENT){
+            console.log("\nEmployee is Present!")
+            attendance = "Present";
+            return true;
         } 
-        console.log("Total Employee Wage :"+totalEmpWage);
-    }
+        else{
+            console.log("\nEmployee is Absent!")
+            attendance = "Absent";
+            return false;
+        }
+    }   
 }
 
 let display = function(){
-    console.log("****** Welcome to EmployeeWage! ******");
-    let employeeWage = new EmployeeWage().totalWage();
+    console.log( "****** Welcome to EmployeeWage! ******");
+    let employeeWage = new EmployeeWage().attendanceCheck();
     console.log(employeeWage);
 }
 display();
+
+module.exports = {display , EmployeeWage};
