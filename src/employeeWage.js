@@ -1,4 +1,3 @@
-
 const IS_PRESENT = 1, IS_PART_TIME = 2;
 const EMP_RATE_PER_HR = 20;
 const NUM_OF_WORKING_DAYS = 20;
