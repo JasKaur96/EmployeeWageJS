@@ -1,4 +1,3 @@
-
 const IS_PRESENT = 1;
 const EMP_RATE_PER_HR = 20;
 
