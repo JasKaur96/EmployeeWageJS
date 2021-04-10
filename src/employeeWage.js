@@ -12,7 +12,7 @@ class EmployeeWage {
     /*empcheck will store random value from 1 or 2.
     On getting 1 it will display employee is present if the value is 2 then the employee is absent. */
     attendanceCheck(){
-        this.empCheck = Math.floor(Math.random() * 10 ) % 3;
+        this.empCheck = Math.floor(Math.random() * 10 ) % 2;
         if(this.empCheck == IS_PRESENT){
             console.log("\nEmployee is Present!")
             this.attendance = "Present";
