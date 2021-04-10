@@ -1,5 +1,5 @@
 
-const IS_PRESENT = 1, IS_PART_TIME = 2;
+const IS_PRESENT = 1;
 const EMP_RATE_PER_HR = 20;
 
 class EmployeeWage {
@@ -24,11 +24,23 @@ class EmployeeWage {
             return this.attendance;
         }
     }   
-}
-
+    /*attendanceCheck() is called here and on the basis of the return value dailywage of employee will be calculated.*/
+    dailyWage(){
+        this.attendanceCheck();
+        if(this.attendance == "Present"){
+            this.empHrs = 8;
+        }
+        else{
+            this.empHrs = 0;
+        }
+         this.salary = this.empHrs * EMP_RATE_PER_HR;
+         console.log("Employee Daily Wage :"+this.salary);
+    }
+  }
+  
 let display = function(){
     console.log( "****** Welcome to EmployeeWage! ******");
-    let employeeWage = new EmployeeWage().attendanceCheck();
+    let employeeWage = new EmployeeWage().dailyWage();
     console.log(employeeWage);
 }
 display();
