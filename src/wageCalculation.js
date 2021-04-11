@@ -17,14 +17,4 @@ class WageCalculation  {
     }
  }
 
-//  let display = function(){
-//     // let employeeWage = new EmployeeWage().attendanceCheck();
-//     let wage = new WageCalculation().dailyWage();
-
-//     // console.log(employeeWage);
-//     console.log(wage);
-// }
-// display();
-
-
 module.exports = {WageCalculation};
