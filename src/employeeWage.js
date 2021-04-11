@@ -1,39 +1,41 @@
-const IS_PRESENT = 1, IS_PART_TIME = 2;
-const EMP_RATE_PER_HR = 20;
+const constants = require('./constants')
+const WageCalculation = require('../src/wageCalculation')
+const wage = new WageCalculation.WageCalculation();
 
+let empCheck = 0;
+let attendance;
 class EmployeeWage {
-    constructor() { 
-    }
-    
-    print() {
-        return "****** Welcome to EmployeeWage! ******";
-     }
-    /*empcheck will store random value from 1, 2 or 3.
-    It will display employee is present, parttime or absent and calculate its wages accordingly.*/
-    dailyWage(){
-        this.empCheck = Math.floor(Math.random() * 10 ) % 3 + 1;
-        switch(this.empCheck){
-            case 1:
+    constructor() {}
+
+    print() {return "****** Welcome to EmployeeWage! ******";}
+    /*empcheck will store random value from 1 or 2.
+    On getting 1 it will display employee is present if the value is 2 then the employee is absent. */
+    attendanceCheck(){
+        empCheck = Math.floor(Math.random() * 10 ) % 3;
+        switch(empCheck){
+            case 1: 
                 console.log("\nEmployee is Present!")
-                this.empHrs = 8;
-                break;
+                attendance = "Present";
+            break;
             case 2:
                 console.log("\nEmployee is Part-time Present!")
-                this.empHrs = 4;
-                break;
-            case 3:
+                attendance = "Part-Time";
+            break;
+            default:
                 console.log("\nEmployee is Absent!")
-                this.empHrs = 0;
-                break;
+                attendance = "Absent";     
         }
-        this.salary = this.empHrs * EMP_RATE_PER_HR;
-        console.log("Employee Daily Wage :"+this.salary);
-    }    
-  }
-  
+        return true;
+    }
+    
+}
+
 let display = function(){
     console.log( "****** Welcome to EmployeeWage! ******");
-    let employeeWage = new EmployeeWage().dailyWage();
+    let employeeWage = new EmployeeWage().attendanceCheck();
+    wage.dailyWage(attendance);
     console.log(employeeWage);
 }
 display();
+
+module.exports = {display , EmployeeWage};
