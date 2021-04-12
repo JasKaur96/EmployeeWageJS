@@ -41,10 +41,12 @@ class EmployeeWage {
             let empCheck = Math.floor(Math.random() * 10 ) % 3;
             totalEmpHrs = totalEmpHrs + this.attendanceCheck(empCheck);
             empDailyWageArr.push(this.calDailyWage(totalEmpHrs),0);
+            empDailyWageMap.set(totalWorkingDays,this.calDailyWage(empHrs));
         }      
         empWage = this.calDailyWage(totalEmpHrs);
         return [totalWorkingDays,totalEmpHrs,empWage,empDailyWageArr];  
     }    
+
     mapDayWithWage(dailyWage){
         dailyCntr++;
         return dailyCntr +" = " + dailyWage;
@@ -54,12 +56,17 @@ class EmployeeWage {
         return mapDayWithWageArr = empDailyWageArr.map(this.mapDayWithWage);
     }
 
+    totalWages(totalWage,dailyWage){return totalWage + dailyWage;}
+
     totalEmployeeHrs(){
         this.wageCalculation();
         this.mapDayWithWageArray();
+        this.totalWages();
         empDailyWageArr.forEach(this.sum);
         console.log("\nTotal Working Hrs:"+totalEmpHrs+"\n Daily Wage Map:");
         console.log(mapDayWithWageArr)
+        console.log("Emp Wage with reduce: "+Array.from(empDailyWageMap.values()).reduce(this.totalWages,0));
+
         return "DAY:"+  totalWorkingDays + " EmpHr:" + totalEmpHrs + " EmpWage:" + empWage;  
     }
 }
