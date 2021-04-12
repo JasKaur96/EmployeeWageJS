@@ -2,7 +2,7 @@ const assert = require ('chai').assert;
 const expect = require('chai').expect //getting from asserting lib
 const employeeWage = require('../src/employeeWage')
 const constants = require('../src/constants');
-const wageCalculation = require('../src/wageCalculation')
+const wageCalculation = require('../../wageCalculation')
 const employee = new employeeWage.EmployeeWage();
 const wage = new wageCalculation.WageCalculation();
 
