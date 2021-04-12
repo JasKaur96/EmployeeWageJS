@@ -1,8 +1,12 @@
+
 const constants = require('./constants')
-let totalEmpHrs = 0, empDailyWageArr= [];
+let totalEmpHrs = 0;
+let empDailyWageArr= [];
 let totalEmpWage = 0, empWage;
+let dailyCntr =0,mapDayWithWageArr;
 let empHrs = 0,totalWorkingDays = 0;
-let empDailyWAgeMap = new Map();
+let totEmpWage;
+let empDailyWageMap = new Map();
 class EmployeeWage {
     constructor() {}
 
@@ -26,21 +30,28 @@ class EmployeeWage {
     calDailyWage(empHrs){
         return empHrs * constants.EMP_RATE_PER_HR;
     }
-
+   
+    sum(dailyWage){
+        totEmpWage = totEmpWage + dailyWage;
+    }
+    
     wageCalculation(){
         while (totalEmpHrs < constants.MAX_HRS_IN_MONTH && totalWorkingDays < constants.NUM_OF_WORKING_DAYS){
             totalWorkingDays++;
             let empCheck = Math.floor(Math.random() * 10 ) % 3;
             totalEmpHrs = totalEmpHrs + this.attendanceCheck(empCheck);
-            empDailyWageArr.push(this.calDailyWage(totalEmpHrs));
+            empDailyWageArr.push(this.calDailyWage(totalEmpHrs),0);
         }      
         empWage = this.calDailyWage(totalEmpHrs);
-        return [totalWorkingDays,totalEmpHrs,empWage];  
+       
+        return [totalWorkingDays,totalEmpHrs,empWage,empDailyWageArr];  
     }    
 
     totalEmployeeHrs(){
         this.wageCalculation();
-        return "\nDAY:"+  totalWorkingDays + " EmpHr:" + totalEmpHrs + " EmpWage:" + empWage;  
+        empDailyWageArr.forEach(this.sum);
+        console.log("\nTotal Working Hrs:",totalEmpHrs)
+        return "DAY:"+  totalWorkingDays + " EmpHr:" + totalEmpHrs + " EmpWage:" + empWage;  
     }
 }
 
