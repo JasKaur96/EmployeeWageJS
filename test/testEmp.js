@@ -1,34 +1,32 @@
 const assert = require ('chai').assert;
 const expect = require('chai').expect //getting from asserting lib
 const employeeWage = require('../src/employeeWage')
-const constants = require('../src/constants');
-const wageCalculation = require('../../wageCalculation')
 const employee = new employeeWage.EmployeeWage();
-const wage = new wageCalculation.WageCalculation();
 
-describe('******Testing Employee Wage.******', function(){
+describe('******Testing Employee Wage.******', () =>{
    
-    it('Should return true on attendance check', function(){
+    it('Test attendance check', () => {
         const result = employee.attendanceCheck();
         assert.equal(result,8)  ;
     })
 
-    it('Should return true on dailywage', function(){
-        const result = wage.dailyWageCalculation("Present");
-        assert.equal(result,true);
+    it('Calculate Dailywage check ',()  => {
+        const result = employee.calDailyWage(8);
+        assert.equal(result,160);
     })
 
-    it('DailyWage for Part-time employee', function(){
-        assert.equal(wage.dailyWageCalculation("Part-Time"),true);
+    it('Calculate dailywage returns numeric value.',() => {
+        expect(employee.calDailyWage(4)).to.be.equal(80);
     })
 
-    it('Should return true on returning numeric value.', function(){
-        assert.isBoolean(wage.dailyWageCalculation("Part-Time"),true);
+    it('Test Totalwage.', function(){
+        let result = 15 + 80;
+        expect(employee.totalWages(15,80)).to.be.equal(result);
     })
 
     it('Calculate Monthly Wage.', function(){
-        let sal = 160 * 20
-        assert.equal(wage.monthlyWageCalculation(sal),3200);
+        let result = 98 + 160;
+        expect(employee.totalWages(98,160)).to.be.equal(result);
     })
     
 })
